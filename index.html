@@ -36,8 +36,8 @@
 
       prettyPrint();
 
-      var fizzyText = new FizzyText('dat.gui');
-      var gui = new DAT.GUI();
+      var fizzyText = new FizzyText('Biohealthy');
+      // var gui = new DAT.GUI();
 
       // Text field
       gui.add(fizzyText, 'message');
@@ -121,12 +121,12 @@
 <div id='helvetica-demo'></div>
 
 <!-- It gives you this! -->
-<div id='notifier'></div>
+<!-- <div id='notifier'></div> -->
 
-<h1><a href='http://twitter.com/guidat'><img src='docs/assets/profile.png'
+<!-- <h1><a href='http://twitter.com/guidat'><img src='docs/assets/profile.png'
                                              border='0' alt='dat.gui flag'/></a>
-</h1>
-
+</h1> -->
+<!-- 
 <p><strong>dat.gui</strong> is a lightweight controller library for JavaScript.
   It allows you to easily manipulate variables and fire functions on the fly.
 </p>
@@ -144,15 +144,15 @@
   </li>
 
   <li><a href='http://github.com/dataarts/dat.gui'>Contribute on GitHub!</a></li>
-</ul>
+</ul> -->
 
-<h2>Basic Usage</h2>
-    <pre id='demo-pre' class='prettyprint'>
-&lt;script type='text/javascript' src='DAT.GUI.min.js'&gt;&lt;/script&gt;
-&lt;script type='text/javascript'&gt;
+<!-- <h2>Basic Usage</h2> -->
+    <!-- <pre id='demo-pre' class='prettyprint'> -->
+<!-- &lt;script type='text/javascript' src='DAT.GUI.min.js'&gt;&lt;/script&gt; -->
+<!-- &lt;script type='text/javascript'&gt; -->
 
-window.onload = function() {
-
+<!-- window.onload = function() { -->
+<!-- 
    var fizzyText = new <a href='docs/demo.js'>FizzyText</a>('dat.gui');
 
    var gui = new DAT.GUI();
@@ -173,11 +173,11 @@ window.onload = function() {
    // Fires a function called 'explode'
    gui.add(fizzyText, 'explode').name('Explode!'); // Specify a custom name.
 
-};
+}; -->
 
-&lt;/script&gt;
-</pre>
-
+<!-- &lt;/script&gt; -->
+<!-- </pre> -->
+<!-- 
 <ul id='desc'>
   <li><code>DAT.GUI</code> will infer the type of the property you're trying
     to add<br/>
@@ -187,7 +187,7 @@ window.onload = function() {
   <li>The properties must be public, i.e. defined by <code><strong>this</strong>.prop
     = value</code>.
   </li>
-</ul>
+</ul> -->
 
 <!--
         <h2 class='collapsed'>Fire a function when someone uses a control</h2>
@@ -251,7 +251,7 @@ window.onload = function() {
     <!--</div>-->
   <!--</div>-->
 <!--</div>-->
-
+<!-- 
 
 <div class='collapsed'>
   <h2 class='section'>Choosing from a list of values</h2>
@@ -265,37 +265,37 @@ gui.add(obj, 'propertyName').options({'Small': 1, 'Medium': 2, 'Large': 3});
 </pre>
     </div>
   </div>
-</div>
+</div> -->
 
-<div class='collapsed'>
-  <h2 class='section'>Listen for variable changes inside the GUI</h2>
+<!-- <div class='collapsed'> -->
+  <!-- <h2 class='section'>Listen for variable changes inside the GUI</h2> -->
 
-  <div class='collapsable'>
+  <!-- <div class='collapsable'>
     <div>
       <p>To fire a function whenever a user changes a variable via the GUI, use
         the following syntax:</p>
                 <pre class='prettyprint'>gui.add(obj, 'propertyName').onChange(function(newValue) {
    alert('You changed me to ' + newValue);
-});</pre>
-      <p>This can be slightly annoying for types like number or string. You may
+});</pre> -->
+     <!--  <p>This can be slightly annoying for types like number or string. You may
         not want to fire a function while the user is sliding, or while they're
         typing. To fire a function when the user has <em>finished</em> making
         changes, use the following:</p>
                 <pre class='prettyprint'>gui.add(obj, 'propertyName').onFinishChange(function(newValue) {
    alert('You just finished changing me to ' + newValue);
-});</pre>
-      <p>Finally, if you'd like to do a little something extra when a function
-        is called, use the following:</p>
-                <pre class='prettyprint last'>gui.add(obj, 'functionName').onFire(function() {
-   alert('You called a function with dat.gui');
-});</pre>
-    </div>
-  </div>
-</div>
-<div class='collapsed'>
-  <h2 class='section'>Listen for variable changes outside of the GUI</h2>
+});</pre> -->
+     <!--  <p>Finally, if you'd like to do a little something extra when a function
+        is called, use the following:</p> -->
+                <!-- <pre class='prettyprint last'>gui.add(obj, 'functionName').onFire(function() { -->
+   <!-- alert('You called a function with dat.gui'); -->
+<!-- });</pre> -->
+    <!-- </div> -->
+  <!-- </div> -->
+<!-- </div> -->
+<!-- <div class='collapsed'> -->
+  <!-- <h2 class='section'>Listen for variable changes outside of the GUI</h2> -->
 
-  <div class='collapsable'>
+  <!-- <div class='collapsable'>
     <div>
       <p>Let's say you have a variable that changes by itself from time to time.
         If you'd like the GUI to reflect those changes, use the <code>listen()</code>
@@ -303,31 +303,31 @@ gui.add(obj, 'propertyName').options({'Small': 1, 'Medium': 2, 'Large': 3});
       <pre
           class='prettyprint last'>gui.add(obj, 'changingProperty').listen();</pre>
     </div>
-  </div>
-</div>
+  </div> -->
+<!-- </div> -->
 
-<div class='collapsed'>
-  <h2 class='section'>Advanced listening</h2>
+<!-- <div class='collapsed'> -->
+  <!-- <h2 class='section'>Advanced listening</h2> -->
 
-  <div class='collapsable'>
-    <div>
-      <p>By default, <code>DAT.GUI</code> will create an internal interval
+  <!-- <div class='collapsable'> -->
+    <!-- <div> -->
+      <!-- <p>By default, <code>DAT.GUI</code> will create an internal interval
         that checks for changes in the values you've marked with
         <code>listen()</code>. If you'd like to check for these changes in an
-        interval of your own definition, use the following:</p>
-                <pre class='prettyprint'>
+        interval of your own definition, use the following:</p> -->
+                <!-- <pre class='prettyprint'>
 gui.autoListen = false; // disables internal interval
 gui.add(obj, 'changingProperty').listen();
 
 // Make your own loop
 setInterval(function() {
     gui.listen(); // updates values you've marked with listen()
-}, 1000 / 60);</pre>
+}, 1000 / 60);</pre> -->
 
-      <p>Alternatively, you can forego calling <code>listen()</code> on
+      <!-- <p>Alternatively, you can forego calling <code>listen()</code> on
         individual controllers, and instead choose to monitor changes in
-        <em>all</em> values controlled by your gui.</p>
-                <pre class='prettyprint last'>
+        <em>all</em> values controlled by your gui.</p> -->
+  <!--               <pre class='prettyprint last'>
 gui.autoListen = false; // disables internal interval
 gui.add(obj, 'add');
 gui.add(obj, 'lotsa');
@@ -349,8 +349,8 @@ setInterval(function() {
       <p>You can instantiate multiple <code>DAT.GUI</code> objects and name them
         however you'd like.</p>
                 <pre class='prettyprint'>var gui1 = new DAT.GUI();
-var gui2 = new DAT.GUI();
-
+var gui2 = new DAT.GUI(); -->
+<!-- 
 // The name function overwrites the 'Show Controls' text.
 gui1.name('Utilities');
 gui2.name('Camera Placement');</pre>
@@ -370,7 +370,7 @@ var gui = new DAT.GUI();
 gui.domElement.style.position = 'absolute';
 gui.domElement.style.top = '20px';
 gui.domElement.style.left = '20px';
-
+ --><!-- 
 document.getElementById('my-gui-container').appendChild( gui.domElement );</pre>
     </div>
   </div>
@@ -389,14 +389,9 @@ document.getElementById('my-gui-container').appendChild( gui.domElement );</pre>
         <li>Press 'H' to show/hide GUI&apos;s.</li>
       </ol>
     </div>
-  </div>
-</div>
+  </div> -->
+<!-- </div> -->
 
-<div class='trans'>&nbsp;</div>
 
-<footer class='trans'>Initiated by <a href='http://georgemichaelbrower.com/'>George
-  Michael Brower</a> and <a href='http://jonobr1.com/'>Jono Brandel</a> of the
-  Data Arts Team, Google Creative Lab.
-</footer>
 </body>
 </html>
