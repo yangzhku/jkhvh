@@ -11,21 +11,23 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
-var Controller = require('./Controller');
-var dom = require('../dom/dom');
-var common = require('../utils/common');
+define([
+    'dat/controllers/Controller',
+    'dat/dom/dom',
+    'dat/utils/common'
+], function(Controller, dom, common) {
 
-/**
- * @class Provides a GUI interface to fire a specified method, a property of an object.
- *
- * @extends dat.controllers.Controller
- *
- * @param {Object} object The object to be manipulated
- * @param {string} property The name of the property to be manipulated
- *
- * @member dat.controllers
- */
-var FunctionController = function(object, property, text) {
+  /**
+   * @class Provides a GUI interface to fire a specified method, a property of an object.
+   *
+   * @extends dat.controllers.Controller
+   *
+   * @param {Object} object The object to be manipulated
+   * @param {string} property The name of the property to be manipulated
+   *
+   * @member dat.controllers
+   */
+  var FunctionController = function(object, property, text) {
 
     FunctionController.superclass.call(this, object, property);
 
@@ -34,9 +36,9 @@ var FunctionController = function(object, property, text) {
     this.__button = document.createElement('div');
     this.__button.innerHTML = text === undefined ? 'Fire' : text;
     dom.bind(this.__button, 'click', function(e) {
-		e.preventDefault();
-		_this.fire();
-		return false;
+      e.preventDefault();
+      _this.fire();
+      return false;
     });
 
     dom.addClass(this.__button, 'button');
@@ -44,27 +46,29 @@ var FunctionController = function(object, property, text) {
     this.domElement.appendChild(this.__button);
 
 
-};
+  };
 
-FunctionController.superclass = Controller;
+  FunctionController.superclass = Controller;
 
-common.extend(
+  common.extend(
 
-    FunctionController.prototype,
-    Controller.prototype,
-    {
-
+      FunctionController.prototype,
+      Controller.prototype,
+      {
+        
         fire: function() {
-			if (this.__onChange) {
-				this.__onChange.call(this);
-			}
-			if (this.__onFinishChange) {
-				this.__onFinishChange.call(this, this.getValue());
-			}
-			this.getValue().call(this.object);
+          if (this.__onChange) {
+            this.__onChange.call(this);
+          }
+          this.getValue().call(this.object);
+          if (this.__onFinishChange) {
+            this.__onFinishChange.call(this, this.getValue());
+          }
         }
-    }
+      }
 
-);
+  );
 
-module.exports = FunctionController;
+  return FunctionController;
+
+});

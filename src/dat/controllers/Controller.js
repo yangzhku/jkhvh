@@ -11,18 +11,19 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
+define([
+   'dat/utils/common'
+], function(common) {
 
-var common = require('../utils/common');
-
-/**
- * @class An "abstract" class that represents a given property of an object.
- *
- * @param {Object} object The object to be manipulated
- * @param {string} property The name of the property to be manipulated
- *
- * @member dat.controllers
- */
-var Controller = function(object, property) {
+  /**
+   * @class An "abstract" class that represents a given property of an object.
+   *
+   * @param {Object} object The object to be manipulated
+   * @param {string} property The name of the property to be manipulated
+   *
+   * @member dat.controllers
+   */
+  var Controller = function(object, property) {
 
     this.initialValue = object[property];
 
@@ -58,14 +59,14 @@ var Controller = function(object, property) {
      */
     this.__onFinishChange = undefined;
 
-};
+  };
 
-common.extend(
+  common.extend(
 
-    Controller.prototype,
+      Controller.prototype,
 
-    /** @lends dat.controllers.Controller.prototype */
-    {
+      /** @lends dat.controllers.Controller.prototype */
+      {
 
         /**
          * Specify that a function fire every time someone changes the value with
@@ -76,8 +77,8 @@ common.extend(
          * @returns {dat.controllers.Controller} this
          */
         onChange: function(fnc) {
-			this.__onChange = fnc;
-			return this;
+          this.__onChange = fnc;
+          return this;
         },
 
         /**
@@ -90,8 +91,8 @@ common.extend(
          * @returns {dat.controllers.Controller} this
          */
         onFinishChange: function(fnc) {
-			this.__onFinishChange = fnc;
-			return this;
+          this.__onFinishChange = fnc;
+          return this;
         },
 
         /**
@@ -100,12 +101,12 @@ common.extend(
          * @param {Object} newValue The new value of <code>object[property]</code>
          */
         setValue: function(newValue) {
-			this.object[this.property] = newValue;
-			if (this.__onChange) {
-				this.__onChange.call(this, newValue);
-			}
-			this.updateDisplay();
-			return this;
+          this.object[this.property] = newValue;
+          if (this.__onChange) {
+            this.__onChange.call(this, newValue);
+          }
+          this.updateDisplay();
+          return this;
         },
 
         /**
@@ -114,7 +115,7 @@ common.extend(
          * @returns {Object} The current value of <code>object[property]</code>
          */
         getValue: function() {
-			return this.object[this.property];
+          return this.object[this.property];
         },
 
         /**
@@ -123,18 +124,21 @@ common.extend(
          * @returns {dat.controllers.Controller} this
          */
         updateDisplay: function() {
-			return this;
+          return this;
         },
 
         /**
          * @returns {Boolean} true if the value has deviated from initialValue
          */
         isModified: function() {
-			return this.initialValue !== this.getValue()
+          return this.initialValue !== this.getValue()
         }
 
-    }
+      }
 
-);
+  );
 
-module.exports = Controller;
+  return Controller;
+
+
+});

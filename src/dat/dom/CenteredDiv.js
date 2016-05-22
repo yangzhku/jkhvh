@@ -11,20 +11,24 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
-var dom = require('../dom/dom');
-var common = require('../utils/common');
+define([
+  'dat/dom/dom',
+  'dat/utils/common'
+], function(dom, common) {
 
-var CenteredDiv = function() {
+
+  var CenteredDiv = function() {
 
     this.backgroundElement = document.createElement('div');
     common.extend(this.backgroundElement.style, {
-		backgroundColor: 'rgba(0,0,0,0.8)',
-		top: 0,
-		left: 0,
-		display: 'none',
-		zIndex: '1000',
-		opacity: 0,
-		WebkitTransition: 'opacity 0.2s linear'
+      backgroundColor: 'rgba(0,0,0,0.8)',
+      top: 0,
+      left: 0,
+      display: 'none',
+      zIndex: '1000',
+      opacity: 0,
+      WebkitTransition: 'opacity 0.2s linear',
+      transition: 'opacity 0.2s linear'
     });
 
     dom.makeFullscreen(this.backgroundElement);
@@ -32,11 +36,12 @@ var CenteredDiv = function() {
 
     this.domElement = document.createElement('div');
     common.extend(this.domElement.style, {
-		position: 'fixed',
-		display: 'none',
-		zIndex: '1001',
-		opacity: 0,
-		WebkitTransition: '-webkit-transform 0.2s ease-out, opacity 0.2s linear'
+      position: 'fixed',
+      display: 'none',
+      zIndex: '1001',
+      opacity: 0,
+      WebkitTransition: '-webkit-transform 0.2s ease-out, opacity 0.2s linear',
+      transition: 'transform 0.2s ease-out, opacity 0.2s linear'
     });
 
 
@@ -45,47 +50,45 @@ var CenteredDiv = function() {
 
     var _this = this;
     dom.bind(this.backgroundElement, 'click', function() {
-		_this.hide();
+      _this.hide();
     });
 
 
-};
+  };
 
-CenteredDiv.prototype.show = function() {
+  CenteredDiv.prototype.show = function() {
 
     var _this = this;
-
-
 
     this.backgroundElement.style.display = 'block';
 
     this.domElement.style.display = 'block';
     this.domElement.style.opacity = 0;
-	//    this.domElement.style.top = '52%';
+//    this.domElement.style.top = '52%';
     this.domElement.style.webkitTransform = 'scale(1.1)';
 
     this.layout();
 
     common.defer(function() {
-		_this.backgroundElement.style.opacity = 1;
-		_this.domElement.style.opacity = 1;
-		_this.domElement.style.webkitTransform = 'scale(1)';
+      _this.backgroundElement.style.opacity = 1;
+      _this.domElement.style.opacity = 1;
+      _this.domElement.style.webkitTransform = 'scale(1)';
     });
 
-};
+  };
 
-CenteredDiv.prototype.hide = function() {
+  CenteredDiv.prototype.hide = function() {
 
     var _this = this;
 
     var hide = function() {
 
-		_this.domElement.style.display = 'none';
-		_this.backgroundElement.style.display = 'none';
+      _this.domElement.style.display = 'none';
+      _this.backgroundElement.style.display = 'none';
 
-		dom.unbind(_this.domElement, 'webkitTransitionEnd', hide);
-		dom.unbind(_this.domElement, 'transitionend', hide);
-		dom.unbind(_this.domElement, 'oTransitionEnd', hide);
+      dom.unbind(_this.domElement, 'webkitTransitionEnd', hide);
+      dom.unbind(_this.domElement, 'transitionend', hide);
+      dom.unbind(_this.domElement, 'oTransitionEnd', hide);
 
     };
 
@@ -94,19 +97,21 @@ CenteredDiv.prototype.hide = function() {
     dom.bind(this.domElement, 'oTransitionEnd', hide);
 
     this.backgroundElement.style.opacity = 0;
-	//    this.domElement.style.top = '48%';
+//    this.domElement.style.top = '48%';
     this.domElement.style.opacity = 0;
     this.domElement.style.webkitTransform = 'scale(1.1)';
 
-};
+  };
 
-CenteredDiv.prototype.layout = function() {
+  CenteredDiv.prototype.layout = function() {
     this.domElement.style.left = window.innerWidth/2 - dom.getWidth(this.domElement) / 2 + 'px';
     this.domElement.style.top = window.innerHeight/2 - dom.getHeight(this.domElement) / 2 + 'px';
-};
-
-function lockScroll(e) {
+  };
+  
+  function lockScroll(e) {
     console.log(e);
-}
+  }
 
-module.exports = CenteredDiv;
+  return CenteredDiv;
+
+});
